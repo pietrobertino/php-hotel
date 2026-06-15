@@ -59,19 +59,27 @@
 
     <table class="table container">
         <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Parking</th>
-            <th>Vote</th>
-            <th>Distance from center</th>
+            <th class='text-center'>Name</th>
+            <th class='text-center'>Description</th>
+            <th class='text-center'>Parking</th>
+            <th class='text-center'>Vote</th>
+            <th class='text-center'>Distance from center</th>
         </tr>
         <?php
         foreach ($hotels as $hotel) {
             echo "<tr>";
             foreach ($hotel as $key => $value) {
-
-                echo "<td>$value </td>";
-            }
+                if ($key == "parking") {
+                    if ($value == 1){
+                        $value = "Yes";
+                    } else {
+                        $value = "No";
+                    }
+                } else if ($key == "distance_to_center"){
+                    $value .= " km";
+                }
+                echo "<td class='text-center'>$value </td>";
+            };
             echo "</tr>";
         }
         ?>
