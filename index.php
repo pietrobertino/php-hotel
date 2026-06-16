@@ -9,17 +9,7 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
-<body>
-
-    <h1 class=" text-center p-3">Hotel list</h1>
-
-    <form action="./filtered_hotels.php" method="GET">
-        <label for="parking">Con parcheggio:</label>
-        <input type="checkbox" name="parking">
-        <button>Filter results</button>
-    </form>
-
-    <?php
+<?php
 
     $hotels = [
 
@@ -63,7 +53,26 @@
 
     ?>
 
-    <table class="table container">
+<body>
+
+    <div class="container">
+        <h1 class=" text-center p-3">Hotel list</h1>
+
+    <form action="./filtered_hotels.php" method="GET" class=" form my-5">
+        <label for="parking" class=" form-label">Con parcheggio:</label>
+        <input type="checkbox" name="parking" class=" form-check d-inline-block align-middle">
+        <label for="reviews" class=" form-label mt-3 d-block">Voto minimo:</label>
+        <select name="reviews" class=" form-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button class="btn btn-primary mt-3" >Filter results</button>
+    </form>
+
+    <table class="table">
         <tr>
             <th class='text-center'>Name</th>
             <th class='text-center'>Description</th>
@@ -92,6 +101,7 @@
 
     </table>
 
+    </div>
 </body>
 
 </html>

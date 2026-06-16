@@ -55,6 +55,12 @@
 
     ];
 
+    $parking = 0;
+    $voteMin = 1;
+
+    $voteMin = (int)$_GET["reviews"];
+    $parking = (bool)$_GET["parking"];
+
     ?>
 
     <table class="table container">
@@ -67,19 +73,38 @@
         </tr>
         <?php
         foreach ($hotels as $hotel) {
-            if ($hotel["parking"]){
-                echo "<tr>";
-                foreach ($hotel as $key => $value) {
-                    if ($key == "parking") {
-                        $value = "Yes";                  
+            if ($parking){
+                if ($hotel["parking"] && $hotel["vote"] >= $voteMin ){
+                    echo "<tr>";
+                    foreach ($hotel as $key => $value) {
+                        if ($key == "parking") {
+                            $value = "Yes";                  
+                        };
+                        if ($key == "distance_to_center"){
+                            $value .= " km";
+                        };
+                        echo "<td class='text-center'>$value </td>";
                     };
-                    if ($key == "distance_to_center"){
-                        $value .= " km";
-                    };
-                    echo "<td class='text-center'>$value </td>";
+                    echo "</tr>";
                 };
-                echo "</tr>";
-            };
+            } else {
+                if ($hotel["vote"] >= $voteMin ){
+                    echo "<tr>";
+                    foreach ($hotel as $key => $value) {
+                        if ($key == "parking") {
+                          if ($value == 1){
+                            $value = "Yes";
+                          } else {
+                              $value = "No";
+                          }
+                        } else if ($key == "distance_to_center"){
+                            $value .= " km";
+                        };
+                        echo "<td class='text-center'>$value </td>";
+                    };
+                    echo "</tr>";
+                };
+            }
         }
         ?>
 
