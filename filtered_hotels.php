@@ -13,12 +13,6 @@
 
     <h1 class=" text-center p-3">Hotel list</h1>
 
-    <form action="./filtered_hotels.php" method="GET">
-        <label for="parking">Con parcheggio:</label>
-        <input type="checkbox" name="parking">
-        <button>Filter results</button>
-    </form>
-
     <?php
 
     $hotels = [
@@ -73,20 +67,19 @@
         </tr>
         <?php
         foreach ($hotels as $hotel) {
-            echo "<tr>";
-            foreach ($hotel as $key => $value) {
-                if ($key == "parking") {
-                    if ($value == 1){
-                        $value = "Yes";
-                    } else {
-                        $value = "No";
-                    }
-                } else if ($key == "distance_to_center"){
-                    $value .= " km";
-                }
-                echo "<td class='text-center'>$value </td>";
+            if ($hotel["parking"]){
+                echo "<tr>";
+                foreach ($hotel as $key => $value) {
+                    if ($key == "parking") {
+                        $value = "Yes";                  
+                    };
+                    if ($key == "distance_to_center"){
+                        $value .= " km";
+                    };
+                    echo "<td class='text-center'>$value </td>";
+                };
+                echo "</tr>";
             };
-            echo "</tr>";
         }
         ?>
 
